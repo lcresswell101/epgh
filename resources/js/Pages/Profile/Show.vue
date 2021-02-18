@@ -9,30 +9,18 @@
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                 <div v-if="$page.props.jetstream.canUpdateProfileInformation">
-                    <update-profile-information-form :user="$page.props.user" />
+                    <update-profile-information-form :user="$page.props.user" :update="true" :url="route('user-profile-information.update')" :deleteUrl="route('current-user-photo.destroy')"/>
 
                     <jet-section-border />
                 </div>
 
                 <div v-if="$page.props.jetstream.canUpdatePassword">
-                    <update-password-form class="mt-10 sm:mt-0" />
+                    <update-password-form class="mt-10 sm:mt-0" :url="route('user-password.update')"></update-password-form>
 
                     <jet-section-border />
                 </div>
 
-                <div v-if="$page.props.jetstream.canManageTwoFactorAuthentication">
-                    <two-factor-authentication-form class="mt-10 sm:mt-0" />
-
-                    <jet-section-border />
-                </div>
-
-                <logout-other-browser-sessions-form :sessions="sessions" class="mt-10 sm:mt-0" />
-
-                <template v-if="$page.props.jetstream.hasAccountDeletionFeatures">
-                    <jet-section-border />
-
-                    <delete-user-form class="mt-10 sm:mt-0" />
-                </template>
+                <delete-form class="mt-10 sm:mt-0" :url="route('current-user.destroy')" type="user"/>
             </div>
         </div>
     </app-layout>
@@ -40,24 +28,23 @@
 
 <script>
     import AppLayout from '@/Layouts/AppLayout'
-    import DeleteUserForm from './DeleteUserForm'
+    import DeleteForm from '@/Components/DeleteForm'
     import JetSectionBorder from '@/Jetstream/SectionBorder'
     import LogoutOtherBrowserSessionsForm from './LogoutOtherBrowserSessionsForm'
     import TwoFactorAuthenticationForm from './TwoFactorAuthenticationForm'
-    import UpdatePasswordForm from './UpdatePasswordForm'
-    import UpdateProfileInformationForm from './UpdateProfileInformationForm'
+    import UpdateProfileInformationForm from '@/Components/UpdateProfileInformationForm'
+    import UpdatePasswordForm from "@/Components/UpdatePasswordForm";
 
     export default {
         props: ['sessions'],
-
         components: {
             AppLayout,
-            DeleteUserForm,
+            DeleteForm,
             JetSectionBorder,
             LogoutOtherBrowserSessionsForm,
             TwoFactorAuthenticationForm,
-            UpdatePasswordForm,
             UpdateProfileInformationForm,
+            UpdatePasswordForm,
         },
     }
 </script>

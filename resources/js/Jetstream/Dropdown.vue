@@ -39,7 +39,7 @@
             },
             contentClasses: {
                 default: () => ['py-1', 'bg-white']
-            }
+            },
         },
 
         data() {

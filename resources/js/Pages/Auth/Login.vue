@@ -28,12 +28,16 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-between mt-4">
+                <button-link :href="route('register')" :class="{ 'opacity-25': form.processing }">
+                    Register
+                </button-link>
+
                 <inertia-link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
                     Forgot your password?
                 </inertia-link>
 
-                <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Login
                 </jet-button>
             </div>
@@ -49,6 +53,7 @@
     import JetCheckbox from '@/Jetstream/Checkbox'
     import JetLabel from '@/Jetstream/Label'
     import JetValidationErrors from '@/Jetstream/ValidationErrors'
+    import ButtonLink from '@/Components/ButtonLink'
 
     export default {
         components: {
@@ -58,7 +63,8 @@
             JetInput,
             JetCheckbox,
             JetLabel,
-            JetValidationErrors
+            JetValidationErrors,
+            ButtonLink
         },
 
         props: {
